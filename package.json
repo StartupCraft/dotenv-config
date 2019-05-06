@@ -1,0 +1,68 @@
+{
+  "name": "@startupcraft/dotenv-config",
+  "version": "0.0.1",
+  "description": "Dotenv config (similar to CRA)",
+  "main": "./lib/index.js",
+  "repository": "https://github.com/StartupCraft/dotenv-config.git",
+  "author": "George Viazemsky <george@startupcraft.io>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src/ -d lib/",
+    "test": "jest",
+    "test:cov": "jest --coverage --collectCoverageFrom=src/**/*.js",
+    "lint": "eslint src __tests__",
+    "lint:fix": "eslint src __tests__ --fix",
+    "precommit": "lint-staged",
+    "prepublishOnly": "yarn test && yarn build"
+  },
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.0.0",
+    "yarn": ">=1.0.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,scss,css}": [
+      "eslint src __tests__ --fix",
+      "prettier --config .prettierrc --write",
+      "jest --bail --findRelatedTests",
+      "git add"
+    ]
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js?(x)"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "7.4.4",
+    "@babel/core": "7.4.4",
+    "@babel/preset-env": "7.4.4",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "24.8.0",
+    "codecov": "3.3.0",
+    "eslint": "5.3.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-config-prettier": "4.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "3.0.1",
+    "husky": "2.2.0",
+    "jest": "24.8.0",
+    "lint-staged": "8.1.6",
+    "prettier": "1.17.0",
+    "regenerator-runtime": "0.13.2"
+  },
+  "dependencies": {
+    "dotenv": "8.0.0",
+    "dotenv-expand": "5.1.0"
+  }
+}
