@@ -2,6 +2,8 @@ import fs from 'fs'
 import { config } from 'dotenv'
 import dotenvExpand from 'dotenv-expand'
 
+config()
+
 const { NODE_ENV } = process.env
 
 if (!NODE_ENV) {
