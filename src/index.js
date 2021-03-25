@@ -4,7 +4,7 @@ import dotenvExpand from 'dotenv-expand'
 
 config()
 
-const { NODE_ENV } = process.env
+const { NODE_ENV, DOCKER } = process.env
 
 if (!NODE_ENV) {
   throw new Error(
@@ -15,16 +15,14 @@ if (!NODE_ENV) {
 const dotenvFiles = [
   `.env.${NODE_ENV}.local`,
   `.env.${NODE_ENV}`,
+  NODE_ENV === 'test' && DOCKER === 'true' && `.env.test.docker`,
+  DOCKER === 'true' && `.env.docker`,
   NODE_ENV !== 'test' && `.env.local`,
   '.env',
 ].filter(Boolean)
 
-dotenvFiles.forEach(dotenvFile => {
+dotenvFiles.forEach((dotenvFile) => {
   if (fs.existsSync(dotenvFile)) {
-    dotenvExpand(
-      config({
-        path: dotenvFile,
-      }),
-    )
+    dotenvExpand(config({ path: dotenvFile }))
   }
 })
