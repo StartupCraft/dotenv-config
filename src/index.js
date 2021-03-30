@@ -13,10 +13,10 @@ if (!NODE_ENV) {
 }
 
 const dotenvFiles = [
-  `.env.${NODE_ENV}.local`,
-  `.env.${NODE_ENV}`,
   NODE_ENV === 'test' && DOCKER === 'true' && `.env.test.docker`,
   DOCKER === 'true' && `.env.docker`,
+  `.env.${NODE_ENV}.local`,
+  `.env.${NODE_ENV}`,
   NODE_ENV !== 'test' && `.env.local`,
   '.env',
 ].filter(Boolean)
