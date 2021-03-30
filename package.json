@@ -1,6 +1,6 @@
 {
   "name": "@startupcraft/dotenv-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dotenv config (similar to CRA)",
   "main": "./lib/index.js",
   "repository": "https://github.com/StartupCraft/dotenv-config.git",
